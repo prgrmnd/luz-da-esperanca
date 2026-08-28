@@ -277,6 +277,9 @@
     .news-date svg{ width:14px; height:14px; stroke:var(--orange-dark); }
     .news-body h3{ font-size:1.08rem; margin-bottom:.6rem; line-height:1.35; color:var(--dark-base); }
     .news-body p{ font-size:.9rem; color:var(--text-support); flex:1; }
+    .read{ display:inline-flex; align-items:center; gap:.35rem; margin-top:1rem; color:var(--orange-dark); font-weight:600; font-size:.9rem; }
+    .read svg{ width:16px; height:16px; stroke:currentColor; transition:transform .2s ease; }
+    .read:hover svg{ transform:translateX(3px); }
 
     .pagination{ display:flex; justify-content:center; align-items:center; gap:.5rem; margin-top:2.8rem; flex-wrap:wrap; }
     .pagination .page-btn{
