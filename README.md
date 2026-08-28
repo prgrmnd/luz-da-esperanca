@@ -186,6 +186,8 @@ A pasta `dist/` é criada pelo build e está no `.gitignore`. A pasta `node_modu
 5. Confirme que imagens externas, mapa e links de contato carregam corretamente.
 6. Publique o conteúdo da pasta `dist/` no serviço de hospedagem escolhido.
 
+Como a aplicação usa `BrowserRouter`, configure a hospedagem para servir `index.html` como fallback das rotas que não correspondem a um arquivo físico. Essa configuração é necessária para acessar diretamente URLs como `/sobre` e `/atividades` sem receber erro 404.
+
 ## Acessibilidade e manutenção
 
 - Preserve textos alternativos (`alt`) nas imagens.
