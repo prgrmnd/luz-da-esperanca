@@ -67,11 +67,21 @@ npm run preview
 ├── package-lock.json          # Versões exatas instaladas pelo npm
 ├── vite.config.js             # Configuração do Vite e nomes dos arquivos finais
 └── src/
-    ├── App.jsx                # Composição principal da página
+    ├── App.jsx                # Configuração das rotas da aplicação
     ├── main.jsx               # Inicialização do React
     ├── styles.css             # Estilos globais e responsivos
     ├── data/
     │   └── siteData.js        # Slides, notícias e opções dos menus
+    ├── layouts/
+    │   └── SiteLayout.jsx     # Estrutura compartilhada das páginas
+    ├── pages/
+    │   ├── PageIntro.jsx      # Modelo visual para páginas em construção
+    │   ├── HomePage.jsx       # Landing page inicial
+    │   ├── AboutPage.jsx      # Página Sobre
+    │   ├── ActivitiesPage.jsx # Página Atividades
+    │   ├── TreatmentsPage.jsx # Página Tratamentos
+    │   ├── NewsPage.jsx       # Página Notícias
+    │   └── ContactPage.jsx    # Página Contato
     └── components/
         ├── AboutSection.jsx   # Sobre a instituição e chamada para ajuda
         ├── Arrow.jsx          # Ícone reutilizável de navegação
@@ -87,7 +97,10 @@ npm run preview
 
 ## Organização dos componentes
 
-- `App.jsx` coordena as seções e centraliza a navegação suave entre âncoras.
+- `App.jsx` configura as rotas e associa cada URL à sua página.
+- `SiteLayout.jsx` mantém a estrutura comum, com cabeçalho, conteúdo e rodapé.
+- `HomePage.jsx` compõe a landing page atual usando as seções da pasta `components/`.
+- Os demais arquivos em `pages/` são pontos de extensão para as telas do menu que ainda receberão conteúdo.
 - `Header.jsx` controla o menu mobile e os dropdowns de Sobre, Atividades e Tratamentos.
 - `Hero.jsx` controla o slide ativo, navegação manual e troca automática a cada cinco segundos.
 - `NewsSection.jsx` controla a paginação e usa `NewsCard.jsx` para renderizar cada notícia.
@@ -95,7 +108,20 @@ npm run preview
 - `SectionHeader.jsx` evita repetição do padrão de título, eyebrow e divisor.
 - `Arrow.jsx` fornece o ícone usado em botões, links e paginação.
 
-Cada componente deve permanecer focado em uma responsabilidade. Dados reutilizados devem ficar em `src/data/`, e não dentro da marcação principal de `App.jsx`.
+Cada componente deve permanecer focado em uma responsabilidade. Dados reutilizados devem ficar em `src/data/`, páginas em `src/pages/`, estruturas compartilhadas em `src/layouts/` e elementos reutilizáveis em `src/components/`.
+
+## Rotas disponíveis
+
+| Rota | Página | Estado |
+| --- | --- | --- |
+| `/` | Home | Landing page funcional |
+| `/sobre` | Sobre o Luz | Estrutura inicial |
+| `/atividades` | Atividades | Estrutura inicial |
+| `/tratamentos` | Tratamentos | Estrutura inicial |
+| `/noticias` | Notícias | Lista paginada reutilizada |
+| `/contato` | Contato | Formulário reutilizado |
+
+Para criar uma nova página, adicione um arquivo em `src/pages/`, registre uma nova `Route` em [src/App.jsx](src/App.jsx) e inclua o link correspondente no menu ou no rodapé.
 
 ## Como alterar o conteúdo
 
@@ -111,7 +137,7 @@ As imagens atuais usam URLs externas do Unsplash. Para usar imagens locais, adic
 
 ### Seções da página
 
-Para modificar estrutura ou conteúdo fixo, edite o componente correspondente em `src/components/`. Novas seções devem ser criadas como componentes próprios e adicionadas ao `App.jsx` na ordem desejada.
+Para modificar estrutura ou conteúdo fixo, edite o componente correspondente em `src/components/` ou na página em `src/pages/`. Novas seções da Home devem ser criadas como componentes próprios e adicionadas em [src/pages/HomePage.jsx](src/pages/HomePage.jsx). Páginas completas devem ser adicionadas em `src/pages/`, sem concentrar sua marcação em `App.jsx`.
 
 ### Estilos
 
@@ -138,6 +164,7 @@ Para conectar um backend, substitua o handler de envio em `src/components/Contac
 
 - `react`: biblioteca de interface.
 - `react-dom`: montagem da aplicação no DOM.
+- `react-router-dom`: rotas e navegação entre páginas.
 - `vite`: servidor de desenvolvimento e build.
 - `@vitejs/plugin-react`: suporte do Vite para JSX e React.
 

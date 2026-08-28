@@ -14,7 +14,7 @@ export const news = [
 ];
 
 export const menuGroups = [
-  { label: 'Sobre o Luz', target: '#sobre', links: [['Programacao', '#sobre'], ['Campanhas', '#noticias'], ['Downloads', '#']] },
-  { label: 'Atividades', target: '#atividades', links: [['Reforco de Luz', '#atividades'], ['Evangelizacao Infantil Sementinha de Luz', '#atividades'], ['Mocidade Espirita Luiz Sergio', '#atividades'], ['Escola de Evangelizacao de Adultos', '#atividades'], ['Sopa Fraterna Bezerra de Menezes', '#atividades'], ['Escola de Estudos Espirita', '#atividades']] },
-  { label: 'Tratamentos', target: '#tratamentos', links: [['Tratamento Segunda-Feira', '#tratamentos'], ['Tratamento Terca-Feira', '#tratamentos'], ['Tratamento Quarta-Feira', '#tratamentos'], ['Cirurgia Espiritual', '#tratamentos'], ['Tratamento a Distancia', '#tratamentos']] },
+  { label: 'Sobre o Luz', target: '/sobre', links: [['Programacao', '/sobre'], ['Campanhas', '/noticias'], ['Downloads', '#']] },
+  { label: 'Atividades', target: '/atividades', links: [['Reforco de Luz', '/atividades'], ['Evangelizacao Infantil Sementinha de Luz', '/atividades'], ['Mocidade Espirita Luiz Sergio', '/atividades'], ['Escola de Evangelizacao de Adultos', '/atividades'], ['Sopa Fraterna Bezerra de Menezes', '/atividades'], ['Escola de Estudos Espirita', '/atividades']] },
+  { label: 'Tratamentos', target: '/tratamentos', links: [['Tratamento Segunda-Feira', '/tratamentos'], ['Tratamento Terca-Feira', '/tratamentos'], ['Tratamento Quarta-Feira', '/tratamentos'], ['Cirurgia Espiritual', '/tratamentos'], ['Tratamento a Distancia', '/tratamentos']] },
 ];

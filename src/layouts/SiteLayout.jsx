@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-export default function SiteLayout({ children }) {
+export default function SiteLayout() {
   useEffect(() => {
     const header = document.getElementById('header');
     const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 40);
@@ -21,7 +22,7 @@ export default function SiteLayout({ children }) {
 
   return <>
     <Header onNavigate={onNavigate} />
-    <main id="main">{children}</main>
+    <main id="main"><Outlet context={{ onNavigate }} /></main>
     <Footer onNavigate={onNavigate} />
   </>;
 }
