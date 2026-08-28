@@ -14,7 +14,7 @@ export const news = [
 ];
 
 export const menuGroups = [
-  { label: 'Sobre o Luz', target: '/sobre', links: [['Programacao', '/sobre'], ['Campanhas', '/noticias'], ['Downloads', '#']] },
-  { label: 'Atividades', target: '/atividades', links: [['Reforco de Luz', '/atividades'], ['Evangelizacao Infantil Sementinha de Luz', '/atividades'], ['Mocidade Espirita Luiz Sergio', '/atividades'], ['Escola de Evangelizacao de Adultos', '/atividades'], ['Sopa Fraterna Bezerra de Menezes', '/atividades'], ['Escola de Estudos Espirita', '/atividades']] },
-  { label: 'Tratamentos', target: '/tratamentos', links: [['Tratamento Segunda-Feira', '/tratamentos'], ['Tratamento Terca-Feira', '/tratamentos'], ['Tratamento Quarta-Feira', '/tratamentos'], ['Cirurgia Espiritual', '/tratamentos'], ['Tratamento a Distancia', '/tratamentos']] },
+  { label: 'Sobre o Luz', target: '/sobre', links: [['Programação', '/sobre/programacao'], ['Campanhas', '/sobre/campanhas'], ['Downloads', '/sobre/downloads']] },
+  { label: 'Atividades', target: '/atividades', links: [['Reforço de Luz', '/atividades/reforco-de-luz'], ['Evangelização Infantil Sementinha de Luz', '/atividades/evangelizacao-infantil-sementinha-de-luz'], ['Mocidade Espírita Luiz Sérgio', '/atividades/mocidade-espirita-luiz-sergio'], ['Escola de Evangelização de Adultos', '/atividades/escola-de-evangelizacao-de-adultos'], ['Sopa Fraterna Bezerra de Menezes', '/atividades/sopa-fraterna-bezerra-de-menezes'], ['Escola de Estudos Espíritas', '/atividades/escola-de-estudos-espiritas']] },
+  { label: 'Tratamentos', target: '/tratamentos', links: [['Tratamento Segunda-Feira', '/tratamentos/segunda-feira'], ['Tratamento Terça-Feira', '/tratamentos/terca-feira'], ['Tratamento Quarta-Feira', '/tratamentos/quarta-feira'], ['Cirurgia Espiritual', '/tratamentos/cirurgia-espiritual'], ['Tratamento a Distância', '/tratamentos/tratamento-a-distancia']] },
 ];

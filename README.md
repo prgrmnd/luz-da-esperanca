@@ -81,7 +81,23 @@ npm run preview
     │   ├── ActivitiesPage.jsx # Página Atividades
     │   ├── TreatmentsPage.jsx # Página Tratamentos
     │   ├── NewsPage.jsx       # Página Notícias
-    │   └── ContactPage.jsx    # Página Contato
+    │   ├── ContactPage.jsx    # Página Contato
+    │   ├── Subpage.jsx        # Modelo compartilhado das subpáginas
+    │   └── subpages/
+    │       ├── ProgramacaoPage.jsx
+    │       ├── CampanhasPage.jsx
+    │       ├── DownloadsPage.jsx
+    │       ├── ReforcoDeLuzPage.jsx
+    │       ├── EvangelizacaoInfantilPage.jsx
+    │       ├── MocidadeEspiritaPage.jsx
+    │       ├── EscolaEvangelizacaoAdultosPage.jsx
+    │       ├── SopaFraternaPage.jsx
+    │       ├── EscolaEstudosEspiritaPage.jsx
+    │       ├── TratamentoSegundaPage.jsx
+    │       ├── TratamentoTercaPage.jsx
+    │       ├── TratamentoQuartaPage.jsx
+    │       ├── CirurgiaEspiritualPage.jsx
+    │       └── TratamentoDistanciaPage.jsx
     └── components/
         ├── AboutSection.jsx   # Sobre a instituição e chamada para ajuda
         ├── Arrow.jsx          # Ícone reutilizável de navegação
@@ -100,7 +116,7 @@ npm run preview
 - `App.jsx` configura as rotas e associa cada URL à sua página.
 - `SiteLayout.jsx` mantém a estrutura comum, com cabeçalho, conteúdo e rodapé.
 - `HomePage.jsx` compõe a landing page atual usando as seções da pasta `components/`.
-- Os demais arquivos em `pages/` são pontos de extensão para as telas do menu que ainda receberão conteúdo.
+- Os arquivos em `pages/` representam as páginas principais e os arquivos em `pages/subpages/` representam cada item dos dropdowns.
 - `Header.jsx` controla o menu mobile e os dropdowns de Sobre, Atividades e Tratamentos.
 - `Hero.jsx` controla o slide ativo, navegação manual e troca automática a cada cinco segundos.
 - `NewsSection.jsx` controla a paginação e usa `NewsCard.jsx` para renderizar cada notícia.
@@ -120,8 +136,24 @@ Cada componente deve permanecer focado em uma responsabilidade. Dados reutilizad
 | `/tratamentos` | Tratamentos | Estrutura inicial |
 | `/noticias` | Notícias | Lista paginada reutilizada |
 | `/contato` | Contato | Formulário reutilizado |
+| `/sobre/programacao` | Programação | Estrutura inicial |
+| `/sobre/campanhas` | Campanhas | Estrutura inicial |
+| `/sobre/downloads` | Downloads | Estrutura inicial |
+| `/atividades/reforco-de-luz` | Reforço de Luz | Estrutura inicial |
+| `/atividades/evangelizacao-infantil-sementinha-de-luz` | Evangelização Infantil Sementinha de Luz | Estrutura inicial |
+| `/atividades/mocidade-espirita-luiz-sergio` | Mocidade Espírita Luiz Sérgio | Estrutura inicial |
+| `/atividades/escola-de-evangelizacao-de-adultos` | Escola de Evangelização de Adultos | Estrutura inicial |
+| `/atividades/sopa-fraterna-bezerra-de-menezes` | Sopa Fraterna Bezerra de Menezes | Estrutura inicial |
+| `/atividades/escola-de-estudos-espiritas` | Escola de Estudos Espíritas | Estrutura inicial |
+| `/tratamentos/segunda-feira` | Tratamento Segunda-Feira | Estrutura inicial |
+| `/tratamentos/terca-feira` | Tratamento Terça-Feira | Estrutura inicial |
+| `/tratamentos/quarta-feira` | Tratamento Quarta-Feira | Estrutura inicial |
+| `/tratamentos/cirurgia-espiritual` | Cirurgia Espiritual | Estrutura inicial |
+| `/tratamentos/tratamento-a-distancia` | Tratamento a Distância | Estrutura inicial |
 
-Para criar uma nova página, adicione um arquivo em `src/pages/`, registre uma nova `Route` em [src/App.jsx](src/App.jsx) e inclua o link correspondente no menu ou no rodapé.
+Para criar uma nova página principal, adicione um arquivo em `src/pages/`, registre uma nova `Route` em [src/App.jsx](src/App.jsx) e inclua o link correspondente no menu ou no rodapé. Para uma nova subpágina, adicione um arquivo nomeado em `src/pages/subpages/`, reutilize `Subpage.jsx`, registre sua rota em `App.jsx` e atualize o item correspondente em `src/data/siteData.js`.
+
+As URLs usam letras minúsculas, sem acentos e com palavras separadas por hífen. Os títulos exibidos na interface preservam a nomenclatura correta e os acentos do conteúdo editorial.
 
 ## Como alterar o conteúdo
 
