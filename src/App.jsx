@@ -15,11 +15,12 @@ import MocidadeEspiritaPage from './pages/subpages/MocidadeEspiritaPage';
 import EscolaEvangelizacaoAdultosPage from './pages/subpages/EscolaEvangelizacaoAdultosPage';
 import SopaFraternaPage from './pages/subpages/SopaFraternaPage';
 import EscolaEstudosEspiritaPage from './pages/subpages/EscolaEstudosEspiritaPage';
-import TratamentoSegundaPage from './pages/subpages/TratamentoSegundaPage';
-import TratamentoTercaPage from './pages/subpages/TratamentoTercaPage';
-import TratamentoQuartaPage from './pages/subpages/TratamentoQuartaPage';
+// import TratamentoSegundaPage from './pages/subpages/TratamentoSegundaPage';
+// import TratamentoTercaPage from './pages/subpages/TratamentoTercaPage';
+// import TratamentoQuartaPage from './pages/subpages/TratamentoQuartaPage';
 import CirurgiaEspiritualPage from './pages/subpages/CirurgiaEspiritualPage';
 import TratamentoDistanciaPage from './pages/subpages/TratamentoDistanciaPage';
+import TratamentoDiasDaSemana from './pages/subpages/TratamentoDiasDaSemana';
 
 export default function App() {
   return <BrowserRouter><Routes><Route element={<SiteLayout />}>
@@ -38,10 +39,11 @@ export default function App() {
     <Route path="/atividades/escola-de-evangelizacao-de-adultos" element={<EscolaEvangelizacaoAdultosPage />} />
     <Route path="/atividades/sopa-fraterna-bezerra-de-menezes" element={<SopaFraternaPage />} />
     <Route path="/atividades/escola-de-estudos-espiritas" element={<EscolaEstudosEspiritaPage />} />
-    <Route path="/tratamentos/segunda-feira" element={<TratamentoSegundaPage />} />
-    <Route path="/tratamentos/terca-feira" element={<TratamentoTercaPage />} />
-    <Route path="/tratamentos/quarta-feira" element={<TratamentoQuartaPage />} />
+    {/* <Route path="/tratamentos/segunda-feira" element={<TratamentoSegundaPage />} /> */}
+    {/* <Route path="/tratamentos/terca-feira" element={<TratamentoTercaPage />} /> */}
+    {/* <Route path="/tratamentos/quarta-feira" element={<TratamentoQuartaPage />} /> */}
     <Route path="/tratamentos/cirurgia-espiritual" element={<CirurgiaEspiritualPage />} />
     <Route path="/tratamentos/tratamento-a-distancia" element={<TratamentoDistanciaPage />} />
+    <Route path="/tratamentos/dias-da-semana" element={<TratamentoDiasDaSemana />} />
   </Route></Routes></BrowserRouter>;
 }
