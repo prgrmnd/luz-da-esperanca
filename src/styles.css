@@ -560,8 +560,11 @@
     @keyframes spin{ to{ transform:rotate(360deg); } }
 
     @media (max-width: 900px){
+      .section.news-list-page{ padding-top:7rem; }
       .news-story-media{ height:300px; }
-      .news-story-content-wrapper{ grid-template-columns:1fr; }
+      .news-story-content-wrapper{ display:flex; flex-direction:column; }
+      .news-story-media.compact{ order:1; }
+      .news-story-copy{ order:2; }
       .news-story-media.compact{ height:240px; }
     }
     @media (max-width: 640px){
