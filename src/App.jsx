@@ -20,6 +20,8 @@ import EscolaEstudosEspiritaPage from './pages/subpages/EscolaEstudosEspiritaPag
 import CirurgiaEspiritualPage from './pages/subpages/CirurgiaEspiritualPage';
 import TratamentoDistanciaPage from './pages/subpages/TratamentoDistanciaPage';
 import TratamentoDiasDaSemana from './pages/subpages/TratamentoDiasDaSemana';
+import VoluntariadoPage from './pages/VoluntariadoPage';
+import QueroAjudarPage from './pages/QueroAjudarPage';
 
 export default function App() {
   return <BrowserRouter><Routes>
@@ -36,6 +38,8 @@ export default function App() {
     <Route path="/sobre/programacao" element={<ProgramacaoPage />} />
     <Route path="/sobre/campanhas" element={<CampanhasPage />} />
     <Route path="/sobre/downloads" element={<DownloadsPage />} />
+    <Route path="/quero-ajudar" element={<QueroAjudarPage />} />
+    <Route path="/voluntariado" element={<VoluntariadoPage />} />
     <Route path="/atividades/reforco-de-luz" element={<ReforcoDeLuzPage />} />
     <Route path="/atividades/evangelizacao-infantil-sementinha-de-luz" element={<EvangelizacaoInfantilPage />} />
     <Route path="/atividades/mocidade-espirita-luiz-sergio" element={<MocidadeEspiritaPage />} />

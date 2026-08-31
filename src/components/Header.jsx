@@ -19,7 +19,7 @@ export default function Header({ onNavigate }) {
     <header className="site-header" id="header"><div className="container nav-top">
       <a href="/" className="brand" onClick={navigate} aria-label="Luz da Esperanca — pagina inicial"><strong>Luz da<br />Esperanca</strong></a>
       <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen}><span /><span /><span /></button>
-      <nav className={`nav-list ${menuOpen ? 'open' : ''}`} aria-label="Navegacao principal">
+      <nav className={`nav-list ${menuOpen ? 'open' : ''}`} aria-label="Navegacao principal" onMouseLeave={() => window.innerWidth > 900 && setOpenGroup(null)}>
         <a href="/" className="nav-link" onClick={navigate}>Inicio</a>
         {menuGroups.map((group, index) => <div
           className={`nav-item ${openGroup === index ? 'open' : ''}`}
@@ -37,7 +37,7 @@ export default function Header({ onNavigate }) {
                 return;
               }
 
-              setOpenGroup(null);
+              closeAllMenus();
               navigate(event);
             }}
             aria-haspopup="true"
@@ -48,7 +48,7 @@ export default function Header({ onNavigate }) {
           </a>
           <div className="dropdown" role="menu" aria-label={`Submenu ${group.label}`}>
             {group.links.map(([label, target]) => <a href={target} role="menuitem" key={label} onClick={(event) => {
-              setOpenGroup(null);
+              closeAllMenus();
               navigate(event);
             }}>{label}</a>)}
           </div>
