@@ -1,8 +1,14 @@
 export const slides = [
-  { kicker: 'Assistencia material, moral e espiritual', title: 'Um farol de esperanca para a nossa comunidade', text: 'O Luz da Esperanca pratica a caridade por todos os meios ao seu alcance, especialmente com criancas e adolescentes em situacao de risco social.', action: 'Conheca o Luz', target: '#sobre', image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=1600&q=80' },
-  { kicker: 'Trabalho social voluntario', title: 'Maos que acolhem, coracoes que transformam', text: 'Atividades de evangelizacao, reforco escolar, mocidade e sopa fraterna conduzidas com amor por voluntarios dedicados.', action: 'Quero Ajudar', target: '#ajuda', image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=1600&q=80' },
-  { kicker: 'Doacoes e voluntariado', title: 'Sua ajuda acende a luz da esperanca', text: 'Toda doacao, material ou financeira, e cada hora de voluntariado fazem a diferenca na vida de quem mais precisa.', action: 'Quero Ajudar', target: '#ajuda', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80' },
+  { kicker: 'Assistencia material, moral e espiritual', title: 'Um farol de esperanca para a nossa comunidade', text: 'O Luz da Esperanca pratica a caridade por todos os meios ao seu alcance, especialmente com criancas e adolescentes em situacao de risco social.', action: 'Conheca o Luz', target: '#sobre', image: '/images/slide-1.png' },
+  { kicker: 'Trabalho social voluntario', title: 'Maos que acolhem, coracoes que transformam', text: 'Atividades de evangelizacao, reforco escolar, mocidade e sopa fraterna conduzidas com amor por voluntarios dedicados.', action: 'Quero Ajudar', target: '#ajuda', image: '/images/slide-2.png' },
+  { kicker: 'Doacoes e voluntariado', title: 'Sua ajuda acende a luz da esperanca', text: 'Toda doacao, material ou financeira, e cada hora de voluntariado fazem a diferenca na vida de quem mais precisa.', action: 'Quero Ajudar', target: '#ajuda', image: '/images/slide-3.png' },
 ];
+
+// Configuração de imagens de fundo para seções
+export const backgroundImages = {
+  newsSection: '/images/noticias-bg.png',
+  footer: '/images/footer-bg.png'
+};
 
 export const news = [
   { tag: 'Evento', date: '05/03/2025', title: 'Programacao especial de marco', description: 'Confira a programacao completa das atividades e estudos da casa para este mes.', image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=70' },
