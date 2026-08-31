@@ -5,6 +5,7 @@ import ContactPage from './pages/ContactPage';
 import DonatePage from './pages/DonatePage';
 import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
+import ArticlePage from './pages/ArticlePage';
 import TreatmentsPage from './pages/TreatmentsPage';
 import SiteLayout from './layouts/SiteLayout';
 import ProgramacaoPage from './pages/subpages/ProgramacaoPage';
@@ -30,6 +31,7 @@ export default function App() {
     <Route path="/atividades" element={<ActivitiesPage />} />
     <Route path="/tratamentos" element={<TreatmentsPage />} />
     <Route path="/noticias" element={<NewsPage />} />
+    <Route path="/noticias/:slug" element={<ArticlePage />} />
     <Route path="/contato" element={<ContactPage />} />
     <Route path="/sobre/programacao" element={<ProgramacaoPage />} />
     <Route path="/sobre/campanhas" element={<CampanhasPage />} />

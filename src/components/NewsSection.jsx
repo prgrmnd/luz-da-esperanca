@@ -6,7 +6,7 @@ import SectionHeader from './SectionHeader';
 export default function NewsSection({ articles, onNavigate }) {
   const [page, setPage] = useState(1);
   const perPage = 3;
-  const totalPages = Math.ceil(articles.length / perPage);
+  const totalPages = Math.max(1, Math.ceil(articles.length / perPage));
   const visibleArticles = articles.slice((page - 1) * perPage, page * perPage);
   const changePage = (nextPage) => setPage(Math.min(Math.max(nextPage, 1), totalPages));
 
