@@ -45,7 +45,7 @@ export default function QueroAjudarPage() {
           </div>
 
           <div style={{ marginTop: '1.5rem' }}>
-            <Link to="/doar" className="btn btn-orange btn-lg">Quero doar</Link>
+            <button type="button" className="btn btn-orange btn-lg" disabled style={{ opacity: 0.7, cursor: 'not-allowed' }}>Quero doar</button>
           </div>
         </article>
       </div>

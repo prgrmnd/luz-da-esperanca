@@ -3,8 +3,8 @@ import Arrow from '../components/Arrow';
 export default function NewsFeed({ articles, onNavigate }) {
   const [featured, ...rest] = articles;
 
-  return <section className="section news-list-page"><div className="container news-centralized">
-    <div className="section-head news-section-head"><span className="eyebrow">Fique por dentro</span><h2>Notícias</h2><div className="divider" /></div>
+  return <section className="section page-intro news-list-page"><div className="container news-centralized">
+    <div className="section-head section-head--compact news-section-head"><span className="eyebrow">Fique por dentro</span><h2>Notícias</h2><div className="divider" /></div>
     <div className="news-feed">
       {featured && <article className="news-story featured-story-block" key={featured.id || featured.slug}>
         <div className="news-story-meta"><span className="news-story-date">{featured.date}</span><span className="news-story-tag">{featured.tag}</span></div>

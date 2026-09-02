@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { menuGroups } from '../data/siteData';
 
 export default function Header({ onNavigate }) {
@@ -11,15 +11,39 @@ export default function Header({ onNavigate }) {
   };
 
   const navigate = (event) => {
-    onNavigate(event);
+    if (onNavigate) onNavigate(event);
     closeAllMenus();
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 900) {
+        closeAllMenus();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const shouldLockScroll = menuOpen && window.innerWidth <= 900;
+    document.body.style.overflow = shouldLockScroll ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   return <>
     <header className="site-header" id="header"><div className="container nav-top">
-      <a href="/" className="brand" onClick={navigate} aria-label="Luz da Esperanca — pagina inicial"><strong>Luz da<br />Esperanca</strong></a>
-      <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen}><span /><span /><span /></button>
-      <nav className={`nav-list ${menuOpen ? 'open' : ''}`} aria-label="Navegacao principal" onMouseLeave={() => window.innerWidth > 900 && setOpenGroup(null)}>
+      <a href="/" className="brand" onClick={navigate} aria-label="Luz da Esperanca — pagina inicial">
+        <span className="brand-logo" aria-hidden="true">
+          <img className="brand-logo-icon" src="/Luz-logo-Centro-Espirita-e-Obras-Sociais.png" alt="" />
+          <img className="brand-logo-text" src="/Luz-logo-Centro-Espirita-e-Obras-Sociais.png" alt="" />
+        </span>
+      </a>
+      <button className="nav-toggle" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen}><span /><span /><span /></button>
+      <nav className={`nav-list ${menuOpen ? 'open' : ''}`} aria-label="Navegacao principal">
         <a href="/" className="nav-link" onClick={navigate}>Inicio</a>
         {menuGroups.map((group, index) => <div
           className={`nav-item ${openGroup === index ? 'open' : ''}`}
@@ -37,7 +61,7 @@ export default function Header({ onNavigate }) {
                 return;
               }
 
-              closeAllMenus();
+              setOpenGroup(null);
               navigate(event);
             }}
             aria-haspopup="true"
@@ -48,15 +72,15 @@ export default function Header({ onNavigate }) {
           </a>
           <div className="dropdown" role="menu" aria-label={`Submenu ${group.label}`}>
             {group.links.map(([label, target]) => <a href={target} role="menuitem" key={label} onClick={(event) => {
-              closeAllMenus();
+              setOpenGroup(null);
               navigate(event);
             }}>{label}</a>)}
           </div>
         </div>)}
-        <a href="#noticias" className="nav-link" onClick={navigate}>Noticias</a>
+        <a href="/noticias" className="nav-link" onClick={navigate}>Noticias</a>
         <a href="#contato" className="nav-link" onClick={navigate}>Contato</a>
       </nav>
     </div></header>
-    {menuOpen && <div className="nav-overlay open" onClick={() => setMenuOpen(false)} />}
+    {menuOpen && <div className="nav-overlay open" onClick={() => { setMenuOpen(false); setOpenGroup(null); }} />}
   </>;
 }
