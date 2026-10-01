@@ -37,17 +37,9 @@ export default function DonationFooter() {
           </div>
         </div>
 
-        <nav className="donation-footer-links" aria-label="Links institucionais e de suporte">
-          <a href="#ajuda" onClick={(e) => { e.preventDefault(); alert('Central de Ajuda: Em caso de dúvidas sobre doações, entre em contato pelo e-mail contato@luzdaesperanca.org.br'); }}>
-            Central de Ajuda
-          </a>
-          <span className="donation-footer-dot" aria-hidden="true">•</span>
+        <nav className="donation-footer-links" aria-label="Links de segurança e privacidade">
           <a href="#seguranca" onClick={(e) => { e.preventDefault(); alert('Segurança: Todas as doações são processadas com criptografia de ponta a ponta pelo PayPal.'); }}>
             Segurança
-          </a>
-          <span className="donation-footer-dot" aria-hidden="true">•</span>
-          <a href="#denuncia" onClick={(e) => { e.preventDefault(); alert('Denúncia / Relato: Para reportar qualquer inconformidade, envie sua mensagem para contato@luzdaesperanca.org.br.'); }}>
-            Denúncia / Relato
           </a>
           <span className="donation-footer-dot" aria-hidden="true">•</span>
           <a href="#privacidade" onClick={(e) => { e.preventDefault(); alert('Política de Privacidade: Seus dados cadastrais são tratados com estrita confidencialidade e nunca compartilhados.'); }}>

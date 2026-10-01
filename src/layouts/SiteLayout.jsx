@@ -7,6 +7,10 @@ export default function SiteLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     const header = document.getElementById('header');
     const onScroll = () => header?.classList.toggle('scrolled', window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });

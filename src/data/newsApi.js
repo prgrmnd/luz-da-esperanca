@@ -1,6 +1,6 @@
 import { news as fallbackNews } from './siteData';
+import { WORDPRESS_URL } from '../services/wordpressApi';
 
-const WORDPRESS_URL = 'https://teste.richard.blog.br/noticias';
 const API_URL = `${WORDPRESS_URL}/wp-json/wp/v2/posts`;
 const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=70';
 

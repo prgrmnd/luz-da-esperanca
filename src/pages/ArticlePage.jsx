@@ -36,10 +36,6 @@ export default function ArticlePage() {
       </div>
     </div>
 
-    <div className="article-hero-image">
-      <img src={article.image} alt={article.title} />
-    </div>
-
     <div className="article-content" dangerouslySetInnerHTML={{ __html: article.content || '<p>Conteúdo indisponível.</p>' }} />
 
     <div className="article-actions">

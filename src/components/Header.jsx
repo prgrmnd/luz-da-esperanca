@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { menuGroups } from '../data/siteData';
 
 export default function Header({ onNavigate }) {
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState(null);
 
@@ -14,6 +16,10 @@ export default function Header({ onNavigate }) {
     if (onNavigate) onNavigate(event);
     closeAllMenus();
   };
+
+  useEffect(() => {
+    closeAllMenus();
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,6 +56,10 @@ export default function Header({ onNavigate }) {
           key={group.label}
           onMouseEnter={() => window.innerWidth > 900 && setOpenGroup(index)}
           onMouseLeave={() => window.innerWidth > 900 && setOpenGroup(null)}
+          onFocus={() => window.innerWidth > 900 && setOpenGroup(index)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setOpenGroup(null);
+          }}
         >
           <a
             href={group.target}
@@ -78,7 +88,7 @@ export default function Header({ onNavigate }) {
           </div>
         </div>)}
         <a href="/noticias" className="nav-link" onClick={navigate}>Noticias</a>
-        <a href="#contato" className="nav-link" onClick={navigate}>Contato</a>
+        <a href="/contato" className="nav-link" onClick={navigate}>Contato</a>
       </nav>
     </div></header>
     {menuOpen && <div className="nav-overlay open" onClick={() => { setMenuOpen(false); setOpenGroup(null); }} />}

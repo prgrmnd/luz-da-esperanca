@@ -20,16 +20,9 @@ export default function QueroAjudarPage() {
 
           <p style={{ marginTop: '1rem' }}>
             As entregas devem ser feitas diretamente no Setor de Doações do Instituto da Caridade, localizado na sede das Obras
-            (Rua Anhanguera, 4170 – Bairro Piauí), em nosso <a href="/programacao" className="inline-link">horário de funcionamento</a>,
+            (Rua Anhanguera, 4170 – Bairro Piauí), em nosso <Link to="/sobre/programacao" className="inline-link">horário de funcionamento</Link>,
             ou coletadas em domicílio, após avaliação.
           </p>
-
-          <h3 style={{ marginTop: '1.5rem' }}>Entre em contato conosco:</h3>
-          <ul className="check-list">
-            <li><a href="mailto:luzdaesperancaparnaiba@gmail.com" className="inline-link">luzdaesperancaparnaiba@gmail.com</a></li>
-            <li><a href="tel:8633213108" className="inline-link">(86) 3321-3108</a> (Fixo)</li>
-            <li><a href="https://api.whatsapp.com/send?phone=55869994179346" target="_blank" rel="noreferrer" className="inline-link">(86) 99417-9346</a> (Whatsapp) – Coordenação do Instituto da Caridade</li>
-          </ul>
 
           <h3 style={{ marginTop: '1.5rem' }}>Faça agora sua doação</h3>
           <p>

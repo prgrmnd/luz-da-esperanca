@@ -6,7 +6,7 @@ A aplicação apresenta a instituição, ações sociais, notícias, localizaç�
 
 ## Requisitos
 
-- Node.js 18 ou superior
+- Node.js 20.19 ou superior (ou 22.12 ou superior)
 - npm 9 ou superior
 - Navegador moderno com suporte a JavaScript
 
@@ -22,10 +22,10 @@ npm --version
 Na raiz do projeto, execute:
 
 ```bash
-npm install
+npm ci
 ```
 
-Esse comando instala as dependências descritas em `package.json` e cria a pasta local `node_modules/`.
+Esse comando instala as versões exatas registradas em `package-lock.json` e cria a pasta local `node_modules/`.
 
 ## Desenvolvimento
 
@@ -50,6 +50,7 @@ O servidor atualiza a página automaticamente quando os arquivos-fonte são alte
 | `npm run dev` | Inicia o servidor de desenvolvimento com atualização automática. |
 | `npm run build` | Gera a versão otimizada para produção em `dist/`. |
 | `npm run preview` | Serve localmente a versão já gerada em `dist/`. |
+| `npm test` | Executa os testes automatizados disponíveis. |
 
 Para testar a versão de produção:
 
@@ -58,6 +59,26 @@ npm run build
 npm run preview
 ```
 
+## Integração com a API do WordPress
+
+As notícias são carregadas pela API REST do WordPress. Por padrão, a aplicação espera o WordPress em `/noticias`, usando endpoints como `/noticias/wp-json/wp/v2/posts`. O domínio atual é detectado automaticamente.
+
+Se o WordPress estiver instalado em outro caminho, configure `VITE_WORDPRESS_URL` antes de gerar a versão de produção. Por exemplo, para uma instalação na raiz do domínio, use `VITE_WORDPRESS_URL=/`; para uma instalação em `/blog`, use `VITE_WORDPRESS_URL=/blog`. Essa variável pode ser definida em um arquivo `.env` local ou nas variáveis de ambiente usadas durante o build na hospedagem. Depois de alterá-la, gere e publique o build novamente.
+
+Se o WordPress estiver em outro domínio, informe a URL completa em `VITE_WORDPRESS_URL` e habilite CORS nesse domínio para permitir requisições originadas pelo site.
+
+As variáveis de build ficam no arquivo local `.env`, criado a partir de `.env.example`. O `.env` não deve ser versionado. O Vite incorpora os valores `VITE_*` no JavaScript gerado; nunca coloque senhas ou segredos privados nessas variáveis.
+
+## Envio do formulário de contato
+
+O formulário envia as mensagens pelo serviço Web3Forms, sem precisar de plugin, SMTP ou endpoint de envio próprio no WordPress. Para configurá-lo:
+
+1. Crie uma chave gratuita em [web3forms.com](https://web3forms.com/) e confirme o endereço de e-mail que receberá as mensagens.
+2. Na raiz do projeto, copie `.env.example` para `.env` e preencha `VITE_WEB3FORMS_ACCESS_KEY` com a chave fornecida pelo Web3Forms.
+3. Gere um novo build com `npm run build` e publique o conteúdo atualizado de `dist/`.
+
+A chave de acesso Web3Forms é projetada para ser usada em formulários no navegador e ficará visível no JavaScript publicado. Restrinja sua utilização ao domínio do site, se essa opção estiver disponível na sua conta. O Web3Forms processa e encaminha os dados do formulário; consulte a política de privacidade do serviço antes de usá-lo. O WordPress continua sendo usado separadamente para carregar as notícias.
+
 ## Estrutura do projeto
 
 ```text
@@ -65,13 +86,22 @@ npm run preview
 ├── index.html                 # Documento HTML de entrada do Vite
 ├── package.json               # Dependências e scripts
 ├── package-lock.json          # Versões exatas instaladas pelo npm
-├── vite.config.js             # Configuração do Vite e nomes dos arquivos finais
+├── vite.config.js             # Configuração do Vite
+├── .env.example               # Modelo de configuração local
+├── public/
+│   ├── favicon.png
+│   └── images/
+│       └── activities/        # Ilustrações das atividades
 └── src/
     ├── App.jsx                # Configuração das rotas da aplicação
     ├── main.jsx               # Inicialização do React
     ├── styles.css             # Estilos globais e responsivos
     ├── data/
-    │   └── siteData.js        # Slides, notícias e opções dos menus
+    │   ├── newsApi.js         # Consulta e normalização de notícias WordPress
+    │   └── siteData.js        # Slides, menus, fundos e notícias reserva
+    ├── services/
+    │   ├── contactService.js  # Envio do formulário pelo Web3Forms
+    │   └── wordpressApi.js    # Origem configurável da API WordPress
     ├── layouts/
     │   └── SiteLayout.jsx     # Estrutura compartilhada das páginas
     ├── pages/
@@ -108,7 +138,7 @@ npm run preview
         ├── LocationSection.jsx# Mapa e endereço
         ├── NewsCard.jsx       # Card individual de notícia
         ├── NewsSection.jsx    # Lista paginada de notícias
-        └── SectionHeader.jsx  # Cabeçalho reutilizável de seção
+        └── SectionHeader.jsx # Cabeçalho reutilizável de seção
 ```
 
 ## Organização dos componentes
@@ -120,7 +150,7 @@ npm run preview
 - `Header.jsx` controla o menu mobile e os dropdowns de Sobre, Atividades e Tratamentos.
 - `Hero.jsx` controla o slide ativo, navegação manual e troca automática a cada cinco segundos.
 - `NewsSection.jsx` controla a paginação e usa `NewsCard.jsx` para renderizar cada notícia.
-- `ContactForm.jsx` gerencia o estado da mensagem de confirmação após o envio.
+- `ContactForm.jsx` gerencia validação, envio e retorno acessível do Web3Forms.
 - `SectionHeader.jsx` evita repetição do padrão de título, eyebrow e divisor.
 - `Arrow.jsx` fornece o ícone usado em botões, links e paginação.
 
@@ -162,10 +192,10 @@ As URLs usam letras minúsculas, sem acentos e com palavras separadas por hífen
 Edite [src/data/siteData.js](src/data/siteData.js):
 
 - `slides`: título, descrição, botão, destino e imagem do carrossel.
-- `news`: categoria, data, título, descrição e imagem de cada notícia.
+- `news`: notícias locais de reserva, exibidas se a API WordPress estiver indisponível.
 - `menuGroups`: grupos e itens dos dropdowns do cabeçalho.
 
-As imagens atuais usam URLs externas do Unsplash. Para usar imagens locais, adicione os arquivos em `src/assets/` e importe-os no arquivo de dados.
+As imagens dos slides usam arquivos de `public/images/`; as ilustrações das atividades ficam em `public/images/activities/`. Para adicionar arquivos servidos estaticamente, coloque-os em `public/` e referencie-os a partir da raiz (por exemplo, `/images/nova-imagem.png`).
 
 ### Seções da página
 
@@ -188,9 +218,7 @@ Evite estilos inline. Quando uma regra for específica de um componente, adicion
 
 ## Formulário de contato
 
-O formulário atualmente funciona apenas no frontend. Ao enviar os campos válidos, ele exibe uma confirmação e limpa os dados digitados. Nenhuma mensagem é enviada para um servidor ou e-mail ainda.
-
-Para conectar um backend, substitua o handler de envio em `src/components/ContactForm.jsx` por uma chamada `fetch` para a API escolhida. A mensagem de sucesso e os estados de erro devem continuar acessíveis com `role="status"` e `aria-live`.
+O formulário encaminha as mensagens pelo Web3Forms. Configure `VITE_WEB3FORMS_ACCESS_KEY` no `.env` antes do build; consulte a seção [Envio do formulário de contato](#envio-do-formulário-de-contato).
 
 ## Dependências e configuração
 
@@ -200,18 +228,11 @@ Para conectar um backend, substitua o handler de envio em `src/components/Contac
 - `vite`: servidor de desenvolvimento e build.
 - `@vitejs/plugin-react`: suporte do Vite para JSX e React.
 
-O arquivo `vite.config.js` define nomes estáveis para os arquivos finais:
-
-```text
-dist/assets/index.js
-dist/assets/styles.css
-```
-
-A pasta `dist/` é criada pelo build e está no `.gitignore`. A pasta `node_modules/` também não deve ser versionada.
+O Vite gera arquivos com nomes hash em `dist/assets/` para evitar cache de versões antigas. Publique o conteúdo completo de `dist/`, incluindo os arquivos públicos e o `.htaccess` da pasta `public/`. `dist/` e `node_modules/` são artefatos locais ignorados pelo Git; gere o build novamente a partir do código-fonte e das variáveis configuradas no ambiente de publicação.
 
 ## Checklist antes de publicar
 
-1. Execute `npm install` para garantir que as dependências estão disponíveis.
+1. Execute `npm ci` para instalar as versões travadas.
 2. Execute `npm run build` e confirme que o build termina sem erros.
 3. Execute `npm run preview` e revise desktop e mobile.
 4. Teste menu mobile, dropdowns, carrossel, paginação, links internos e formulário.
