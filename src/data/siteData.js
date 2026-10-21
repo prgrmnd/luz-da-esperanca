@@ -17,7 +17,7 @@ export const news = [
 ];
 
 export const menuGroups = [
-  { label: 'Sobre', target: '/sobre', links: [['Nossa história', '/sobre'], ['Atividades', '/atividades'], ['Contato', '/contato']] },
-  { label: 'Atividades', target: '/atividades', links: [['Programa', '/sobre/programacao'], ['Tratamentos', '/tratamentos'], ['Eventos', '/atividades']] },
-  { label: 'Apoie', target: '/quero-ajudar', links: [['Quero Ajudar', '/quero-ajudar'], ['Voluntariado', '/voluntariado'], ['Campanhas', '/sobre/campanhas']] },
+  { label: 'Sobre', links: [['Nossa história', '/sobre']] },
+  { label: 'Atividades', links: [['Programa', '/sobre/programacao'], ['Tratamentos', '/tratamentos'], ['Eventos', '/atividades']] },
+  { label: 'Apoie', links: [['Quero Ajudar', '/quero-ajudar'], ['Voluntariado', '/voluntariado'], ['Campanhas', '/sobre/campanhas']] },
 ];

@@ -22,6 +22,17 @@ export default function Header({ onNavigate }) {
   }, [location.pathname]);
 
   useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeAllMenus();
+        document.querySelector('.nav-toggle')?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 900) {
         closeAllMenus();
@@ -50,8 +61,14 @@ export default function Header({ onNavigate }) {
       </a>
       <button className="nav-toggle" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'} aria-expanded={menuOpen}><span /><span /><span /></button>
       <nav className={`nav-list ${menuOpen ? 'open' : ''}`} aria-label="Navegacao principal">
-        <a href="/" className="nav-link" onClick={navigate}>Inicio</a>
-        {menuGroups.map((group, index) => <div
+        <a href="/" className="nav-link" aria-current={location.pathname === '/' ? 'page' : undefined} onClick={navigate}>Início</a>
+        {menuGroups.map((group, index) => group.links.length === 1 ? <a
+          href={group.links[0][1]}
+          className="nav-link"
+          key={group.label}
+          aria-current={location.pathname === group.links[0][1] ? 'page' : undefined}
+          onClick={navigate}
+        >{group.label}</a> : <div
           className={`nav-item ${openGroup === index ? 'open' : ''}`}
           key={group.label}
           onMouseEnter={() => window.innerWidth > 900 && setOpenGroup(index)}
@@ -61,25 +78,16 @@ export default function Header({ onNavigate }) {
             if (!event.currentTarget.contains(event.relatedTarget)) setOpenGroup(null);
           }}
         >
-          <a
-            href={group.target}
-            className="nav-link"
-            onClick={(event) => {
-              if (window.innerWidth <= 900) {
-                event.preventDefault();
-                setOpenGroup(openGroup === index ? null : index);
-                return;
-              }
-
-              setOpenGroup(null);
-              navigate(event);
-            }}
+          <button
+            type="button"
+            className={`nav-link ${group.links.some(([, target]) => location.pathname === target) ? 'is-active' : ''}`}
+            onClick={() => setOpenGroup(openGroup === index ? null : index)}
             aria-haspopup="true"
             aria-expanded={openGroup === index}
           >
             {group.label}
             <svg className="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-          </a>
+          </button>
           <div className="dropdown" role="menu" aria-label={`Submenu ${group.label}`}>
             {group.links.map(([label, target]) => <a href={target} role="menuitem" key={label} onClick={(event) => {
               setOpenGroup(null);
@@ -87,8 +95,8 @@ export default function Header({ onNavigate }) {
             }}>{label}</a>)}
           </div>
         </div>)}
-        <a href="/noticias" className="nav-link" onClick={navigate}>Noticias</a>
-        <a href="/contato" className="nav-link" onClick={navigate}>Contato</a>
+        <a href="/noticias" className="nav-link" aria-current={location.pathname === '/noticias' ? 'page' : undefined} onClick={navigate}>Notícias</a>
+        <a href="/contato" className="nav-link" aria-current={location.pathname === '/contato' ? 'page' : undefined} onClick={navigate}>Contato</a>
       </nav>
     </div></header>
     {menuOpen && <div className="nav-overlay open" onClick={() => { setMenuOpen(false); setOpenGroup(null); }} />}

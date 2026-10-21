@@ -26,6 +26,25 @@ export default function Footer({ onNavigate }) {
         </div>
 
         <div className="footer-col">
+          <h4>Contatos</h4>
+          <ul className="footer-contact">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.91-8.67A2 2 0 0 1 3.26 1.15h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.79a2 2 0 0 1-.45 2.11L7.23 9.04a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.57 2.79.69A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <a href="tel:+5586994021555">(86)99402-1555</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 6-10 7L2 6" />
+              </svg>
+              <a href="mailto:diretoria@luzdaesperanca.org">diretoria@luzdaesperanca.org</a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="footer-col">
           <h4>Links Rapidos</h4>
           <ul className="footer-links">
             {footerLinks.map(([target, label]) => (

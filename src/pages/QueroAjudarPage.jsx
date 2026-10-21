@@ -38,7 +38,7 @@ export default function QueroAjudarPage() {
           </div>
 
           <div style={{ marginTop: '1.5rem' }}>
-            <button type="button" className="btn btn-orange btn-lg" disabled style={{ opacity: 0.7, cursor: 'not-allowed' }}>Quero doar</button>
+            <a href="https://www.paypal.com/ncp/payment/MSSR5UZ2SBSMJ" className="btn btn-orange btn-lg">Quero doar</a>
           </div>
         </article>
       </div>

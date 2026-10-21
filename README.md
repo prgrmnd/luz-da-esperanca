@@ -71,13 +71,13 @@ As variáveis de build ficam no arquivo local `.env`, criado a partir de `.env.e
 
 ## Envio do formulário de contato
 
-O formulário envia as mensagens pelo serviço Web3Forms, sem precisar de plugin, SMTP ou endpoint de envio próprio no WordPress. Para configurá-lo:
+O formulário envia as mensagens para um endpoint do WordPress, que chama a API do Resend. Não é necessário contratar e-mail SMTP na Hostinger. Para configurá-lo:
 
-1. Crie uma chave gratuita em [web3forms.com](https://web3forms.com/) e confirme o endereço de e-mail que receberá as mensagens.
-2. Na raiz do projeto, copie `.env.example` para `.env` e preencha `VITE_WEB3FORMS_ACCESS_KEY` com a chave fornecida pelo Web3Forms.
+1. Instale o plugin `wordpress/luz-contact.zip` e configure a chave Resend em **Configurações → Contato Luz**. Use o domínio verificado como remetente e **diretoria@luzdaesperanca.org** como destinatário.
+2. Configure `VITE_WORDPRESS_URL` com o caminho da instalação do WordPress. Não coloque a chave Resend no `.env` do React.
 3. Gere um novo build com `npm run build` e publique o conteúdo atualizado de `dist/`.
 
-A chave de acesso Web3Forms é projetada para ser usada em formulários no navegador e ficará visível no JavaScript publicado. Restrinja sua utilização ao domínio do site, se essa opção estiver disponível na sua conta. O Web3Forms processa e encaminha os dados do formulário; consulte a política de privacidade do serviço antes de usá-lo. O WordPress continua sendo usado separadamente para carregar as notícias.
+Consulte [as instruções completas de instalação](wordpress/INSTALACAO.md). A chave fica no servidor; o endereço do visitante é usado para respostas. O destinatário pode ser alterado no painel do WordPress. O Resend processa as mensagens, e seus limites gratuitos devem ser acompanhados no painel.
 
 ## Estrutura do projeto
 
@@ -218,7 +218,7 @@ Evite estilos inline. Quando uma regra for específica de um componente, adicion
 
 ## Formulário de contato
 
-O formulário encaminha as mensagens pelo Web3Forms. Configure `VITE_WEB3FORMS_ACCESS_KEY` no `.env` antes do build; consulte a seção [Envio do formulário de contato](#envio-do-formulário-de-contato).
+O formulário encaminha as mensagens pelo WordPress e Resend. Instale e configure o plugin de contato; consulte a seção [Envio do formulário de contato](#envio-do-formulário-de-contato).
 
 ## Dependências e configuração
 

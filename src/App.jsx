@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AboutPage from './pages/AboutPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import ContactPage from './pages/ContactPage';
-import DonatePage from './pages/DonatePage';
 import HomePage from './pages/HomePage';
 import NewsPage from './pages/NewsPage';
 import ArticlePage from './pages/ArticlePage';
@@ -22,11 +21,10 @@ import TratamentoDistanciaPage from './pages/subpages/TratamentoDistanciaPage';
 import TratamentoDiasDaSemana from './pages/subpages/TratamentoDiasDaSemana';
 import VoluntariadoPage from './pages/VoluntariadoPage';
 import QueroAjudarPage from './pages/QueroAjudarPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   return <BrowserRouter><Routes>
-    <Route path="/doar" element={<DonatePage />} />
-    <Route path="/doacao" element={<DonatePage />} />
     <Route element={<SiteLayout />}>
       <Route path="/" element={<HomePage />} />
       <Route path="/sobre" element={<AboutPage />} />
@@ -52,6 +50,7 @@ export default function App() {
       <Route path="/tratamentos/cirurgia-espiritual" element={<CirurgiaEspiritualPage />} />
       <Route path="/tratamentos/tratamento-a-distancia" element={<TratamentoDistanciaPage />} />
       <Route path="/tratamentos/dias-da-semana" element={<TratamentoDiasDaSemana />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   </Routes></BrowserRouter>;
 }

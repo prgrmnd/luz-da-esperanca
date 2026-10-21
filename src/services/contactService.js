@@ -1,18 +1,14 @@
-const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
-const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+import { WORDPRESS_URL } from './wordpressApi';
 
-export const isContactFormConfigured = Boolean(WEB3FORMS_ACCESS_KEY);
+const CONTACT_URL = import.meta.env.VITE_CONTACT_API_URL || `${WORDPRESS_URL}/wp-json/luz/v1/contact`;
+
+export const isContactFormConfigured = Boolean(CONTACT_URL);
 
 export async function sendContactMessage(message) {
-  if (!WEB3FORMS_ACCESS_KEY) {
-    throw new Error('O formulário ainda não está configurado para envio.');
-  }
-
-  const response = await fetch(WEB3FORMS_URL, {
+  const response = await fetch(CONTACT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
-      access_key: WEB3FORMS_ACCESS_KEY,
       ...message,
     }),
   });
